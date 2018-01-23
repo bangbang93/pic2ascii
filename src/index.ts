@@ -13,7 +13,7 @@ export async function pic2ascii(file) {
       const color = image.getPixelColor(col, row)
       const color1 = image.getPixelColor(col, row + 1)
       const {r, g, b} = Jimp['intToRGBA'](color)
-      const {r1, g1, b1} = Jimp['intToRGBA'](color1)
+      const {r:r1, g:g1, b:b1} = Jimp['intToRGBA'](color1)
       const avg = (~~r+~~g+~~b) / 3
       const avg1 = (~~r1+~~g1+~~b1) / 3
       const gray = Math.round((avg + avg1) * 9 / 51)
@@ -31,4 +31,5 @@ function searchChar(gray) {
       return grayToChar[g]
     }
   }
+  return grayToChar[keys.pop()]
 }
